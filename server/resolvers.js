@@ -37,12 +37,26 @@ module.exports = {
       });
     },
 
-    Product(parent, { id }, { faker }, info) {
+    Product(parent, { id }, { faker }) {
       return {
         id,
         price: faker.commerce.price(),
         name: faker.commerce.productName()
       };
+    },
+
+    Todo: (parent, { id }, { faker }) => ({
+      id,
+      title: faker.random.words(),
+      completed: faker.random.boolean()
+    }),
+
+    allTodos: (parent, { count }, { faker }) => {
+      return new Array(count).fill(0).map(_ => ({
+        id: cuid(),
+        title: faker.random.words(),
+        completed: faker.random.boolean()
+      }));
     }
   },
 
