@@ -8,10 +8,10 @@ const jwt = require('express-jwt');
 const faker = require('faker/locale/en');
 const compression = require('compression');
 
-const typeDefs = require('./typeDefs');
-const resolvers = require('./resolvers');
-const initQuery = require('./initQuery');
-const { sslRedirect } = require('./utils');
+const typeDefs = require('./server/typeDefs');
+const resolvers = require('./server/resolvers');
+const initQuery = require('./server/initQuery');
+const { sslRedirect } = require('./server/utils');
 
 const {
   PORT = 5000,

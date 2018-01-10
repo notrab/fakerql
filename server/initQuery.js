@@ -3,10 +3,14 @@ module.exports = `# Welcome to FakerQL!
 # FakerQL is built on top of faker.js
 #
 # There are a few default queries and
-# mutations you can perform.
+# mutations you can perform. All available
+# queries and mutations can be found using
+# the Docs link on the right.
 #
-# Often helpful during development and
-# learning GraphQL.
+# No queries/mutations are logged. This application
+# is available opensource on GitHub.
+#
+# https://github.com/notrab/fakerql
 #
 # An example query might look like:
 #
