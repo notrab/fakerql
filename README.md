@@ -6,7 +6,7 @@ FakerQL was created for frontend developers and GraphQL powered apps. Whether yo
 
 You can head over to [GraphiQL](https://faker.com) to send some example queries and mutations.
 
-### Queries
+## Queries
 
 #### Get a list of users
 
@@ -76,7 +76,7 @@ You can request a single Product by providing any ID.
 }
 ```
 
-### Mutations
+## Mutations
 
 #### Register user
 
