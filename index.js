@@ -5,7 +5,7 @@ const { makeExecutableSchema } = require('graphql-tools');
 const { formatError } = require('apollo-errors');
 const cors = require('cors');
 const jwt = require('express-jwt');
-const faker = require('faker');
+const faker = require('faker/locale/en');
 const compression = require('compression');
 
 const typeDefs = require('./typeDefs');
@@ -29,7 +29,6 @@ const isDeveloping = app.get('env') === 'development';
 
 if (!isDeveloping) {
   app.disable('x-powered-by');
-  // app.use(sslRedirect());
   app.use(compression());
 }
 
