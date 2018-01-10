@@ -8,18 +8,123 @@ You can head over to [GraphiQL](https://faker.com) to send some example queries 
 
 ### Queries
 
-* `allUsers(count: Int)`
-* `User(id: String!)`
-* `allProducts(count: Int)`
-* `Product(id: String!)`
+#### Get a list of users
+
+You can request a list of users. `count` is optional and defaults to 25.
+
+```graphql
+# allUsers(count: Int)
+
+{
+  allUsers(count: 5) {
+    id
+    firstName
+    lastName
+    email
+    avatar
+  }
+}
+```
+
+#### Get a User
+
+You can request a single User by providing any ID.
+
+```graphql
+# allUsers(count: Int)
+
+{
+  allUsers(count: 5) {
+    id
+    firstName
+    lastName
+    email
+    avatar
+  }
+}
+```
+
+#### Get a list of products
+
+You can request a list of products. `count` is optional and defaults to 25.
+
+```graphql
+# allProducts(count: Int)
+
+{
+  allProducts(count: 5) {
+    id
+    name
+    price
+  }
+}
+```
+
+#### Get a Product
+
+You can request a single Product by providing any ID.
+
+```graphql
+# Product(id: String!)
+
+{
+  allProducts(count: 10) {
+    id
+    name
+    price
+  }
+}
+```
 
 ### Mutations
 
-* `register(email: String, password: String!)`
-* `login(email: String, password: String!)`
-* `updateUser(id: String, email: String!)`
+#### Register user
 
-## Example
+Registering a User returns a random signed JWT. `expiresIn` is optional and pretty much pointless right now.
+
+```graphql
+# register(email: String!, password: String!, expiresIn: String)
+
+{
+  register(email: "hi@jamiebarton.co.uk", password: "F4K3rqL!", expiresIn: '24h') {
+    token
+  }
+}
+```
+
+#### Login user
+
+Logging in a User returns a random signed JWT. `expiresIn` is optional and pretty much pointless right now.
+
+```graphql
+# login(email: String!, password: String!, expiresIn: String)
+
+{
+  login(email: "hi@jamiebarton.co.uk", password: "F4K3rqL!") {
+    token
+  }
+}
+```
+
+#### WIP: Updating user
+
+This mutation returns the updated data you passed in to update.
+
+```graphql
+# updateUser(id: ID!, email: String!, firstName: String, lastName: String)
+
+{
+  updateUser(id: "wk0z1j1tzj7xc0116is3ckdrx", firstName: "Jim") {
+    id
+    firstName
+    lastName
+  }
+}
+```
+
+➡️ You must specify the header `Authorization: Bearer token` to satisfy this mutation.
+
+## Client side library example
 
 The example below uses [graphql-request](https://github.com/graphcool/graphql-request).
 
@@ -44,8 +149,6 @@ const query = `{
 
 request('https://fakerql.com', query).then(data => console.log(data))
 ```
-
-➡️ The mutations `register` and `login` return a JWT token that can be used for the `updateUser` mutation. You must specify the `Authorization` header with the Bearer token to satisfy the request.
 
 ## Todo
 
