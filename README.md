@@ -4,7 +4,7 @@ FakerQL was created for frontend developers and GraphQL powered apps. Whether yo
 
 ## Give it a try
 
-You can head over to [GraphiQL](https://faker.com) to send some example queries and mutations.
+You can head over to [GraphiQL](https://fakerql.com) to send some example queries and mutations.
 
 ## Queries
 
