@@ -6,6 +6,7 @@ const { formatError } = require('apollo-errors');
 const cors = require('cors');
 const jwt = require('express-jwt');
 const faker = require('faker/locale/en');
+const casual = require('casual');
 const compression = require('compression');
 
 const typeDefs = require('./server/typeDefs');
@@ -47,6 +48,7 @@ app.use(
     context: {
       jwtSecret: JWT_SECRET,
       faker,
+      casual,
       user: req.user
     }
   }))

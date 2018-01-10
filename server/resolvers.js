@@ -57,6 +57,40 @@ module.exports = {
         title: faker.random.words(),
         completed: faker.random.boolean()
       }));
+    },
+
+    // refactor user relation into Class
+    Post: (parent, { id }, { faker }) => ({
+      id,
+      title: faker.random.words(),
+      body: faker.lorem.paragraphs(),
+      published: faker.random.boolean(),
+      createdAt: faker.date.past(),
+      author: {
+        id: cuid(),
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        avatar: faker.image.avatar()
+      }
+    }),
+
+    // refactor user relation into Class
+    allPosts: (parent, { count }, { faker }) => {
+      return new Array(count).fill(0).map(_ => ({
+        id: cuid(),
+        title: faker.random.words(),
+        body: faker.lorem.sentences(),
+        published: faker.random.boolean(),
+        createdAt: faker.date.past(),
+        author: {
+          id: cuid(),
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
+          email: faker.internet.email(),
+          avatar: faker.image.avatar()
+        }
+      }));
     }
   },
 

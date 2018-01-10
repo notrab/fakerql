@@ -23,6 +23,15 @@ module.exports = `
     completed: Boolean!
   }
 
+  type Post {
+    id: ID!
+    title: String!
+    body: String!
+    published: Boolean!
+    createdAt: String!
+    author: User!
+  }
+
   type Query {
     allUsers(count: Int): [User]
     User(id: ID!): User
@@ -30,6 +39,8 @@ module.exports = `
     Product(id: ID!): Product
     Todo(id: ID!): Todo
     allTodos(count: Int): [Todo]
+    Post(id: ID!): Post
+    allPosts(count: Int): [Post]
   }
 
   type Mutation {
