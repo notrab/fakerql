@@ -128,8 +128,8 @@ This mutation returns the updated data you passed in to update.
 
 The example below uses [graphql-request](https://github.com/graphcool/graphql-request).
 
-```
-import { request } from 'graphql-request'
+```js
+import { request } from 'graphql-request';
 
 const query = `{
   products: allProducts(count: 25) {
@@ -145,9 +145,9 @@ const query = `{
     email
     avatar
   }
-}`
+}`;
 
-request('https://fakerql.com', query).then(data => console.log(data))
+request('https://fakerql.com', query).then(data => console.log(data));
 ```
 
 ## Todo
