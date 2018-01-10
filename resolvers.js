@@ -1,10 +1,12 @@
 const cuid = require('cuid');
 const { generateAuthToken } = require('./utils');
 
+const DEFAULT_COUNT = 25;
+
 module.exports = {
   Query: {
-    allUsers(parent, args, { faker }) {
-      return new Array(15).fill(0).map(_ => {
+    allUsers(parent, { count = DEFAULT_COUNT }, { faker }) {
+      return new Array(count).fill(0).map(_ => {
         return {
           id: cuid(),
           firstName: faker.name.firstName(),
@@ -25,8 +27,8 @@ module.exports = {
       };
     },
 
-    allProducts(parent, args, { faker }) {
-      return new Array(15).fill(0).map(_ => {
+    allProducts(parent, { count = DEFAULT_COUNT }, { faker }) {
+      return new Array(count).fill(0).map(_ => {
         return {
           id: cuid(),
           price: faker.commerce.price(),

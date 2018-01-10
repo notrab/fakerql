@@ -29,7 +29,7 @@ const isDeveloping = app.get('env') === 'development';
 
 if (!isDeveloping) {
   app.disable('x-powered-by');
-  app.use(sslRedirect());
+  // app.use(sslRedirect());
   app.use(compression());
 }
 

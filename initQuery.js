@@ -11,7 +11,7 @@ module.exports = `# Welcome to FakerQL!
 # An example query might look like:
 #
 # {
-#   allProducts {
+#   allProducts(count: 5) {
 #     id
 #     name
 #     price

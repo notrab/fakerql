@@ -18,9 +18,9 @@ module.exports = `
   }
 
   type Query {
-    allUsers(perPage: Int, page: Int): [User]
+    allUsers(count: Int): [User]
     User(id: ID!): User
-    allProducts: [Product]
+    allProducts(count: Int): [Product]
     Product(id: ID!): Product
   }
 
