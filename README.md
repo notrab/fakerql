@@ -122,11 +122,11 @@ This mutation returns the updated data you passed in to update.
 }
 ```
 
+➡️ You must specify the header `Authorization: Bearer token` to satisfy this mutation.
+
 ## Subscriptions
 
 _Coming soon._
-
-➡️ You must specify the header `Authorization: Bearer token` to satisfy this mutation.
 
 ## Client side library example
 
