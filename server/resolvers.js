@@ -6,44 +6,36 @@ const DEFAULT_COUNT = 25;
 module.exports = {
   Query: {
     allUsers(parent, { count = DEFAULT_COUNT }, { faker }) {
-      return new Array(count).fill(0).map(_ => {
-        return {
-          id: cuid(),
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName(),
-          email: faker.internet.email(),
-          avatar: faker.image.avatar()
-        };
-      });
-    },
-
-    User(parent, { id }, { faker }) {
-      return {
-        id,
+      return new Array(count).fill(0).map(_ => ({
+        id: cuid(),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         email: faker.internet.email(),
         avatar: faker.image.avatar()
-      };
+      }));
     },
 
-    allProducts(parent, { count = DEFAULT_COUNT }, { faker }) {
-      return new Array(count).fill(0).map(_ => {
-        return {
-          id: cuid(),
-          price: faker.commerce.price(),
-          name: faker.commerce.productName()
-        };
-      });
-    },
+    User: (parent, { id }, { faker }) => ({
+      id,
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email(),
+      avatar: faker.image.avatar()
+    }),
 
-    Product(parent, { id }, { faker }) {
-      return {
-        id,
+    allProducts: (parent, { count = DEFAULT_COUNT }, { faker }) => {
+      return new Array(count).fill(0).map(_ => ({
+        id: cuid(),
         price: faker.commerce.price(),
         name: faker.commerce.productName()
-      };
+      }));
     },
+
+    Product: (parent, { id }, { faker }) => ({
+      id,
+      price: faker.commerce.price(),
+      name: faker.commerce.productName()
+    }),
 
     Todo: (parent, { id }, { faker }) => ({
       id,
@@ -51,7 +43,7 @@ module.exports = {
       completed: faker.random.boolean()
     }),
 
-    allTodos: (parent, { count }, { faker }) => {
+    allTodos: (parent, { count = DEFAULT_COUNT }, { faker }) => {
       return new Array(count).fill(0).map(_ => ({
         id: cuid(),
         title: faker.random.words(),
@@ -95,45 +87,43 @@ module.exports = {
   },
 
   Mutation: {
-    async register(
+    register: async (
       parent,
       { email, password, expiresIn = '2d' },
       { jwtSecret },
       info
-    ) {
-      const token = await generateAuthToken({ email }, jwtSecret, expiresIn);
+    ) => ({
+      token: await generateAuthToken({ email }, jwtSecret, expiresIn)
+    }),
 
-      return {
-        token
-      };
-    },
-
-    async login(
+    login: async (
       parent,
       { email, password, expiresIn = '2d' },
       { jwtSecret },
       info
-    ) {
-      const token = await generateAuthToken({ email }, jwtSecret, expiresIn);
+    ) => ({
+      token: await generateAuthToken({ email }, jwtSecret, expiresIn)
+    }),
 
-      return {
-        token
-      };
-    },
-
-    updateUser(parent, { id, firstName, lastName, email }, { user }) {
+    updateUser: (
+      parent,
+      { id, firstName, lastName, email, avatar },
+      { user, faker }
+    ) => {
       if (!user) {
         throw new Error('You must be logged into do that.');
       }
 
       return {
         id,
-        firstName,
-        lastName,
-        email
+        firstName: firstName === undefined ? faker.name.firstName() : firstName,
+        lastName: lastName === undefined ? faker.name.lastName() : lastName,
+        email: email === undefined ? faker.internet.email() : email,
+        avatar: avatar === undefined ? faker.image.avatar() : avatar
       };
     },
 
+    // No authentication for demo purposes
     createTodo: (parent, { title, completed }, { faker }) => ({
       id: cuid(),
       title,

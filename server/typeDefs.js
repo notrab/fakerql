@@ -46,7 +46,7 @@ module.exports = `
   type Mutation {
     register(email: String!, password: String!, expiresIn: String): AuthPayload
     login(email: String!, password: String!, expiresIn: String): AuthPayload
-    updateUser(id: ID!, email: String!, firstName: String, lastName: String): User
+    updateUser(id: ID!, email: String, firstName: String, lastName: String): User
     createTodo(title: String!, completed: Boolean): Todo
   }
 `;

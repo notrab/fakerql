@@ -165,7 +165,7 @@ Registering a User returns a random signed JWT. `expiresIn` is optional and pret
 ```graphql
 # register(email: String!, password: String!, expiresIn: String)
 
-{
+mutation {
   register(email: "hi@jamiebarton.co.uk", password: "F4K3rqL!", expiresIn: '24h') {
     token
   }
@@ -179,21 +179,21 @@ Logging in a User returns a random signed JWT. `expiresIn` is optional and prett
 ```graphql
 # login(email: String!, password: String!, expiresIn: String)
 
-{
+mutation {
   login(email: "hi@jamiebarton.co.uk", password: "F4K3rqL!") {
     token
   }
 }
 ```
 
-#### WIP: Updating user
+#### Updating user
 
 This mutation returns the updated data you passed in to update.
 
 ```graphql
 # updateUser(id: ID!, email: String!, firstName: String, lastName: String)
 
-{
+mutation {
   updateUser(id: "wk0z1j1tzj7xc0116is3ckdrx", firstName: "Jim") {
     id
     firstName
@@ -211,7 +211,7 @@ This mutation returns the data you sent arguments + a fake ID.
 ```graphql
 # createTodo(title: String!, completed: Boolean)
 
-{
+mutation {
   createTodo(title: "Book movie tickets") {
     id
     title
