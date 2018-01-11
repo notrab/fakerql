@@ -7,10 +7,12 @@ module.exports = `# Welcome to FakerQL!
 # queries and mutations can be found using
 # the Docs link on the right.
 #
-# No queries/mutations are logged. This application
-# is available opensource on GitHub.
+# No queries/mutations are logged.
 #
-# https://github.com/notrab/fakerql
+# GraphQL endpoint is https://fakerql.com/graphql
+#
+# This application is available opensource
+# on GitHub: https://github.com/notrab/fakerql
 #
 # An example query might look like:
 #
