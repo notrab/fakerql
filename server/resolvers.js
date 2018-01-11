@@ -4,15 +4,11 @@ const Redis = require('ioredis');
 const cuid = require('cuid');
 const { generateAuthToken } = require('./utils');
 
-const options = {
-  host: 'localhost',
-  port: 6379,
-  retry_strategy: options => Math.max(options.attempt * 100, 3000)
-};
+const { REDIS_URL = 'http://localhost:6379/' } = process.env;
 
 const pubsub = new RedisPubSub({
-  publisher: new Redis(options),
-  subscriber: new Redis(options)
+  publisher: new Redis(REDIS_URL),
+  subscriber: new Redis(REDIS_URL)
 });
 
 const DEFAULT_COUNT = 25;
