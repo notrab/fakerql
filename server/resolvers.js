@@ -127,21 +127,33 @@ module.exports = {
     },
 
     // No authentication for demo purposes
-    createTodo: (parent, { title, completed }, { faker }) => ({
-      id: cuid(),
-      title,
-      completed: completed === undefined ? faker.random.boolean() : completed
-    })
+    createTodo: (parent, { title, completed }, { faker }) => {
+      const id = cuid();
+
+      pubsub.publish('todoAdded', {
+        todoAdded: {
+          id,
+          title,
+          completed
+        }
+      });
+
+      return {
+        id,
+        title,
+        completed: completed === undefined ? faker.random.boolean() : completed
+      };
+    }
   },
 
   Subscription: {
     todoAdded: {
-      subscribe: () => pubsub.asyncIterator('todoAdded'),
       resolve: payload => ({
         id: 'abc',
         title: 'Hello',
         completed: true
-      })
+      }),
+      subscribe: () => pubsub.asyncIterator('todoAdded')
     }
   }
 };

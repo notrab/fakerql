@@ -204,7 +204,7 @@ mutation {
 
 ➡️ You must specify the header `Authorization: Bearer token` to satisfy this mutation.
 
-### Create Todo
+#### Create Todo
 
 This mutation returns the data you sent arguments + a fake ID.
 
