@@ -247,7 +247,7 @@ const query = `{
   }
 }`;
 
-request('https://fakerql.com', query).then(data => console.log(data));
+request('https://fakerql.com/graphql', query).then(data => console.log(data));
 ```
 
 ## Todo
