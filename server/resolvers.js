@@ -1,5 +1,15 @@
+const { RedisPubSub } = require('graphql-redis-subscriptions');
+const Redis = require('ioredis');
+
 const cuid = require('cuid');
 const { generateAuthToken } = require('./utils');
+
+const { REDIS_URL = 'http://localhost:6379/' } = process.env;
+
+const pubsub = new RedisPubSub({
+  publisher: new Redis(REDIS_URL),
+  subscriber: new Redis(REDIS_URL)
+});
 
 const DEFAULT_COUNT = 25;
 
@@ -124,10 +134,33 @@ module.exports = {
     },
 
     // No authentication for demo purposes
-    createTodo: (parent, { title, completed }, { faker }) => ({
-      id: cuid(),
-      title,
-      completed: completed === undefined ? faker.random.boolean() : completed
-    })
+    createTodo: (parent, { title, completed }, { faker }) => {
+      const id = cuid();
+
+      pubsub.publish('todoAdded', {
+        todoAdded: {
+          id,
+          title,
+          completed
+        }
+      });
+
+      return {
+        id,
+        title,
+        completed: completed === undefined ? faker.random.boolean() : completed
+      };
+    }
+  },
+
+  Subscription: {
+    todoAdded: {
+      resolve: payload => ({
+        id: 'abc',
+        title: 'Hello',
+        completed: true
+      }),
+      subscribe: () => pubsub.asyncIterator('todoAdded')
+    }
   }
 };
