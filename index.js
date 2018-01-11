@@ -1,4 +1,5 @@
 const express = require('express');
+const { createServer } = require('http');
 const bodyParser = require('body-parser');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
@@ -8,6 +9,8 @@ const jwt = require('express-jwt');
 const faker = require('faker/locale/en');
 const casual = require('casual');
 const compression = require('compression');
+const { execute, subscribe } = require('graphql');
+const { SubscriptionServer } = require('subscriptions-transport-ws');
 
 const typeDefs = require('./server/typeDefs');
 const resolvers = require('./server/resolvers');
@@ -25,7 +28,7 @@ const schema = makeExecutableSchema({
 });
 
 const app = express();
-
+const server = createServer(app);
 const isDeveloping = app.get('env') === 'development';
 
 if (!isDeveloping) {
@@ -58,10 +61,23 @@ app.get(
   '/',
   graphiqlExpress({
     endpointURL: '/graphql',
+    subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
     query: initQuery
   })
 );
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
+
+  new SubscriptionServer(
+    {
+      execute,
+      subscribe,
+      schema
+    },
+    {
+      server,
+      path: '/subscriptions'
+    }
+  );
 });

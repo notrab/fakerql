@@ -1,5 +1,8 @@
+const { PubSub } = require('graphql-subscriptions');
 const cuid = require('cuid');
 const { generateAuthToken } = require('./utils');
+
+const pubsub = new PubSub();
 
 const DEFAULT_COUNT = 25;
 
@@ -129,5 +132,16 @@ module.exports = {
       title,
       completed: completed === undefined ? faker.random.boolean() : completed
     })
+  },
+
+  Subscription: {
+    todoAdded: {
+      subscribe: () => pubsub.asyncIterator('todoAdded'),
+      resolve: payload => ({
+        id: 'abc',
+        title: 'Hello',
+        completed: true
+      })
+    }
   }
 };

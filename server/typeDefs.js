@@ -49,4 +49,8 @@ module.exports = `
     updateUser(id: ID!, email: String, firstName: String, lastName: String): User
     createTodo(title: String!, completed: Boolean): Todo
   }
+
+  type Subscription {
+    todoAdded: Todo
+  }
 `;
