@@ -31,10 +31,10 @@ You can request a list of users. `count` is optional and defaults to 25.
 You can request a single User by providing any ID.
 
 ```graphql
-# allUsers(count: Int)
+# User(id: String!)
 
 {
-  allUsers(count: 5) {
+  allUsers(id: "wk0z1j1tzj7xc0116is3ckdrx") {
     id
     firstName
     lastName
@@ -68,10 +68,90 @@ You can request a single Product by providing any ID.
 # Product(id: String!)
 
 {
-  allProducts(count: 10) {
+  allProduct(id: "cjbrygtdz3e480147hv8ozt40") {
     id
     name
     price
+  }
+}
+```
+
+#### Get a list of todos
+
+You can request a list of todos. `count` is optional and defaults to 25.
+
+```graphql
+# allTodos(count: Int)
+
+{
+  allTodos(count: 5) {
+    id
+    title
+    completed
+  }
+}
+```
+
+#### Get a Todo
+
+You can request a single Todo by providing any ID.
+
+```graphql
+# Todo(id: String!)
+
+{
+  Todo(id: "cjbrygq0u3e4301476mfqoaae") {
+    id
+    title
+    completed
+  }
+}
+```
+
+#### Get a list of posts
+
+You can request a list of posts. `count` is optional and defaults to 25.
+
+```graphql
+# allPosts(count: Int)
+
+{
+  allPosts(count: 5) {
+    id
+    title
+    body
+    published
+    createdAt
+    author {
+      id
+      firstName
+      lastName
+      avatar
+    }
+  }
+}
+```
+
+#### Get a Post
+
+You can request a single Post by providing any ID.
+
+```graphql
+# Post(id: String!)
+
+{
+  Post(id: "cjbryfb1x3e3c0147f4f4110o") {
+    id
+    title
+    body
+    published
+    createdAt
+    author {
+      id
+      firstName
+      lastName
+      avatar
+    }
   }
 }
 ```
@@ -123,6 +203,22 @@ This mutation returns the updated data you passed in to update.
 ```
 
 ➡️ You must specify the header `Authorization: Bearer token` to satisfy this mutation.
+
+### Create Todo
+
+This mutation returns the data you sent arguments + a fake ID.
+
+```graphql
+# createTodo(title: String!, completed: Boolean)
+
+{
+  createTodo(title: "Book movie tickets") {
+    id
+    title
+    completed
+  }
+}
+```
 
 ## Subscriptions
 

@@ -132,6 +132,12 @@ module.exports = {
         lastName,
         email
       };
-    }
+    },
+
+    createTodo: (parent, { title, completed }, { faker }) => ({
+      id: cuid(),
+      title,
+      completed: completed === undefined ? faker.random.boolean() : completed
+    })
   }
 };
