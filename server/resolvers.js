@@ -1,8 +1,19 @@
-const { PubSub } = require('graphql-subscriptions');
+const { RedisPubSub } = require('graphql-redis-subscriptions');
+const Redis = require('ioredis');
+
 const cuid = require('cuid');
 const { generateAuthToken } = require('./utils');
 
-const pubsub = new PubSub();
+const options = {
+  host: 'localhost',
+  port: 6379,
+  retry_strategy: options => Math.max(options.attempt * 100, 3000)
+};
+
+const pubsub = new RedisPubSub({
+  publisher: new Redis(options),
+  subscriber: new Redis(options)
+});
 
 const DEFAULT_COUNT = 25;
 
