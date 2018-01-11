@@ -4,7 +4,7 @@ const Redis = require('ioredis');
 const cuid = require('cuid');
 const { generateAuthToken } = require('./utils');
 
-const { REDIS_URL = 'http://localhost:6379/' } = process.env;
+const { REDIS_URL } = process.env;
 
 const pubsub = new RedisPubSub({
   publisher: new Redis(REDIS_URL),
