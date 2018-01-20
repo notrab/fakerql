@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "devDependencies": {
-    "nodemon": "^1.14.10"
+    "nodemon": "^1.14.11"
   },
   "dependencies": {
     "apollo-errors": "^1.5.1",
@@ -15,7 +15,7 @@
     "cuid": "^2.0.2",
     "express-jwt": "^5.3.0",
     "faker": "^4.1.0",
-    "graphql-yoga": "^1.1.5",
+    "graphql-yoga": "^1.2.0",
     "jsonwebtoken": "^8.1.0"
   }
 }
