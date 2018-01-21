@@ -1,15 +1,17 @@
 {
-  "name": "fakerql-server",
+  "name": "fakerql",
   "private": true,
   "version": "0.0.2",
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
     "dev": "npm-run-all --parallel start-dev playground",
-    "start-dev": "nodemon -e ts,graphql -x ts-node src",
+    "start": "nodemon -e ts,graphql -x ts-node -r dotenv/config src",
     "playground": "graphql playground",
+    "deploy":
+      "now --public --dotenv .env.production && now alias && now rm --yes --safe fakerql.com",
     "build": "rimraf dist && tsc",
-    "start": "node dist"
+    "now-start": "node dist"
   },
   "devDependencies": {
     "@types/cuid": "^1.3.0",
@@ -31,6 +33,11 @@
     "scuid": "^1.0.2"
   },
   "now": {
-    "alias": "fakerql"
+    "alias": "fakerql.com"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }
