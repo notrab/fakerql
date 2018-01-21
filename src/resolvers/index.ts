@@ -1,4 +1,4 @@
-import * as cuid from 'cuid';
+import * as scuid from 'scuid';
 
 import { generateAuthToken } from '../utils';
 
@@ -8,7 +8,7 @@ export default {
   Query: {
     allUsers(parent, { count = DEFAULT_COUNT }, { faker }) {
       return new Array(count).fill(0).map(_ => ({
-        id: cuid(),
+        id: scuid(),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         email: faker.internet.email(),
@@ -26,7 +26,7 @@ export default {
 
     allProducts: (parent, { count = DEFAULT_COUNT }, { faker }) => {
       return new Array(count).fill(0).map(_ => ({
-        id: cuid(),
+        id: scuid(),
         price: faker.commerce.price(),
         name: faker.commerce.productName()
       }));
@@ -46,7 +46,7 @@ export default {
 
     allTodos: (parent, { count = DEFAULT_COUNT }, { faker }) => {
       return new Array(count).fill(0).map(_ => ({
-        id: cuid(),
+        id: scuid(),
         title: faker.random.words(),
         completed: faker.random.boolean()
       }));
@@ -60,7 +60,7 @@ export default {
       published: faker.random.boolean(),
       createdAt: faker.date.past(),
       author: {
-        id: cuid(),
+        id: scuid(),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         email: faker.internet.email(),
@@ -71,13 +71,13 @@ export default {
     // refactor user relation into Class
     allPosts: (parent, { count }, { faker }) => {
       return new Array(count).fill(0).map(_ => ({
-        id: cuid(),
+        id: scuid(),
         title: faker.random.words(),
         body: faker.lorem.sentences(),
         published: faker.random.boolean(),
         createdAt: faker.date.past(),
         author: {
-          id: cuid(),
+          id: scuid(),
           firstName: faker.name.firstName(),
           lastName: faker.name.lastName(),
           email: faker.internet.email(),
@@ -126,7 +126,7 @@ export default {
 
     // No authentication for demo purposes
     createTodo: (parent, { title, completed }, { faker }) => {
-      const id = cuid();
+      const id = scuid();
 
       // pubsub.publish('todoAdded', {
       //   todoAdded: {

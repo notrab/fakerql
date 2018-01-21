@@ -13,12 +13,11 @@ const pubsub = new PubSub();
 const server = new GraphQLServer({
   typeDefs,
   resolvers,
-  context: req => ({
-    ...req,
+  context: ({ request }: any) => ({
     jwtSecret: JWT_SECRET,
     faker,
     pubsub,
-    user: req.user
+    user: request.user
   })
 });
 
