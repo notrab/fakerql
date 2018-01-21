@@ -1,19 +1,10 @@
-// const { RedisPubSub } = require('graphql-redis-subscriptions');
-// const Redis = require('ioredis');
+import * as cuid from 'cuid';
 
-const cuid = require('cuid');
-const { generateAuthToken } = require('./utils');
-
-// const { REDIS_URL } = process.env;
-
-// const pubsub = new RedisPubSub({
-//   publisher: new Redis(REDIS_URL),
-//   subscriber: new Redis(REDIS_URL)
-// });
+import { generateAuthToken } from '../utils';
 
 const DEFAULT_COUNT = 25;
 
-module.exports = {
+export default {
   Query: {
     allUsers(parent, { count = DEFAULT_COUNT }, { faker }) {
       return new Array(count).fill(0).map(_ => ({

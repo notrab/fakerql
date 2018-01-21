@@ -1,12 +1,11 @@
-const { GraphQLServer, PubSub } = require('graphql-yoga');
-const { formatError } = require('apollo-errors');
-const jwt = require('express-jwt');
-const faker = require('faker/locale/en');
-const compression = require('compression');
+import { GraphQLServer, PubSub } from 'graphql-yoga';
+import { formatError } from 'apollo-errors';
+import * as jwt from 'express-jwt';
+import * as faker from 'faker/locale/en';
+import * as compression from 'compression';
 
-const typeDefs = require('./server/typeDefs');
-const resolvers = require('./server/resolvers');
-const rootValue = require('./server/rootValue');
+import typeDefs from './typeDefs';
+import resolvers from './resolvers';
 
 const { JWT_SECRET = 'bufb73f3f084f3487f7803fn30f34bf0n3fb3f83' } = process.env;
 
@@ -14,11 +13,12 @@ const pubsub = new PubSub();
 const server = new GraphQLServer({
   typeDefs,
   resolvers,
-  context: ({ request }) => ({
+  context: req => ({
+    ...req,
     jwtSecret: JWT_SECRET,
     faker,
     pubsub,
-    user: request.user
+    user: req.user
   })
 });
 
@@ -31,6 +31,8 @@ server.express.use(
     credentialsRequired: false
   })
 );
+
+server.express.use(compression());
 
 const options = {
   formatError,

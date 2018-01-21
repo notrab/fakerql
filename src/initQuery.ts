@@ -1,4 +1,4 @@
-module.exports = `# Welcome to FakerQL!
+export default `# Welcome to FakerQL!
 #
 # FakerQL is built on top of faker.js
 #

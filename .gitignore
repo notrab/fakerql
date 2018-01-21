@@ -1,2 +1,10 @@
+# dependencies
 node_modules
+
+# production
+dist
+
+# misc
+package-lock.json
 *.rdb
+.env*
