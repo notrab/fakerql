@@ -8,7 +8,7 @@
     "dev": "npm-run-all --parallel start-dev playground",
     "start-dev": "nodemon -e ts,graphql -x ts-node src",
     "playground": "graphql playground",
-    "build": "rimraf dist && graphql prepare && tsc",
+    "build": "rimraf dist && tsc",
     "start": "node dist"
   },
   "devDependencies": {
