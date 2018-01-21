@@ -1,0 +1,55 @@
+type AuthPayload {
+  token: String!
+}
+
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  avatar: String
+}
+
+type Product {
+  id: ID!
+  price: String!
+  name: String!
+}
+
+type Todo {
+  id: ID!
+  title: String!
+  completed: Boolean!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  published: Boolean!
+  createdAt: String!
+  author: User!
+}
+
+type Query {
+  me: User
+  allUsers(count: Int): [User]
+  User(id: ID!): User
+  allProducts(count: Int): [Product]
+  Product(id: ID!): Product
+  Todo(id: ID!): Todo
+  allTodos(count: Int): [Todo]
+  Post(id: ID!): Post
+  allPosts(count: Int): [Post]
+}
+
+type Mutation {
+  register(email: String!, password: String!, expiresIn: String): AuthPayload
+  login(email: String!, password: String!, expiresIn: String): AuthPayload
+  updateUser(id: ID!, email: String, firstName: String, lastName: String): User
+  createTodo(title: String!, completed: Boolean): Todo
+}
+
+type Subscription {
+  todoAdded: Todo
+}

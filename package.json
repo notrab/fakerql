@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "npm-run-all --parallel start-dev playground",
+    "dev": "npm-run-all --parallel start playground",
     "start": "nodemon -e ts,graphql -x ts-node -r dotenv/config src",
     "playground": "graphql playground",
     "deploy":

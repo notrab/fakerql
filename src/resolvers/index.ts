@@ -1,11 +1,24 @@
 import * as scuid from 'scuid';
 
-import { generateAuthToken } from '../utils';
+import { generateAuthToken, getUserId } from '../utils';
 
 const DEFAULT_COUNT = 25;
 
 export default {
   Query: {
+    me: (parent, args, ctx) => {
+      const userId = getUserId(ctx);
+      const { faker } = ctx;
+
+      return {
+        id: userId,
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        avatar: faker.image.avatar()
+      };
+    },
+
     allUsers(parent, { count = DEFAULT_COUNT }, { faker }) {
       return new Array(count).fill(0).map(_ => ({
         id: scuid(),
@@ -106,14 +119,9 @@ export default {
       token: await generateAuthToken({ email }, jwtSecret, expiresIn)
     }),
 
-    updateUser: (
-      parent,
-      { id, firstName, lastName, email, avatar },
-      { user, faker }
-    ) => {
-      if (!user) {
-        throw new Error('You must be logged into do that.');
-      }
+    updateUser: (parent, { id, firstName, lastName, email, avatar }, ctx) => {
+      const userId = getUserId(ctx);
+      const { faker } = ctx;
 
       return {
         id,
