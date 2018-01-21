@@ -107,7 +107,11 @@ export default {
       { jwtSecret },
       info
     ) => ({
-      token: await generateAuthToken({ email }, jwtSecret, expiresIn)
+      token: await generateAuthToken(
+        { userId: scuid(), email },
+        jwtSecret,
+        expiresIn
+      )
     }),
 
     login: async (
@@ -116,7 +120,11 @@ export default {
       { jwtSecret },
       info
     ) => ({
-      token: await generateAuthToken({ email }, jwtSecret, expiresIn)
+      token: await generateAuthToken(
+        { email, userId: scuid() },
+        jwtSecret,
+        expiresIn
+      )
     }),
 
     updateUser: (parent, { id, firstName, lastName, email, avatar }, ctx) => {
