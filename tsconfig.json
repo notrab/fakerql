@@ -5,9 +5,9 @@
     "module": "commonjs",
     "sourceMap": true,
     "noUnusedLocals": true,
-    "rootDir": "./src",
-    "outDir": "./dist",
+    "rootDir": "src",
+    "outDir": "dist",
     "lib": ["esnext.asynciterable", "es2016", "dom"]
   },
-  "exclude": ["node_modules", "dist", "example"]
+  "exclude": ["node_modules", "dist"]
 }

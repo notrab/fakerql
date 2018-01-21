@@ -6,7 +6,6 @@ import * as compression from 'compression';
 
 import typeDefs from './typeDefs';
 import resolvers from './resolvers';
-import rootValue from './rootValue';
 
 const { JWT_SECRET = 'bufb73f3f084f3487f7803fn30f34bf0n3fb3f83' } = process.env;
 
@@ -14,11 +13,12 @@ const pubsub = new PubSub();
 const server = new GraphQLServer({
   typeDefs,
   resolvers,
-  context: ({ request }) => ({
+  context: req => ({
+    ...req,
     jwtSecret: JWT_SECRET,
     faker,
     pubsub,
-    user: request.user
+    user: req.user
   })
 });
 

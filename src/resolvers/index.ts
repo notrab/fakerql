@@ -1,15 +1,6 @@
-// const { RedisPubSub } = require('graphql-redis-subscriptions');
-// const Redis = require('ioredis');
+import * as cuid from 'cuid';
 
-const cuid = require('cuid');
-const { generateAuthToken } = require('./utils');
-
-// const { REDIS_URL } = process.env;
-
-// const pubsub = new RedisPubSub({
-//   publisher: new Redis(REDIS_URL),
-//   subscriber: new Redis(REDIS_URL)
-// });
+import { generateAuthToken } from '../utils';
 
 const DEFAULT_COUNT = 25;
 

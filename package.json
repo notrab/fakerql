@@ -1,16 +1,23 @@
 {
+  "name": "fakerql-server",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rm -rf dist && tsc -d",
-    "prepare": "npm run build",
+    "dev": "npm-run-all --parallel start-dev playground",
+    "start-dev": "nodemon -e ts,graphql -x ts-node src",
+    "playground": "graphql playground",
+    "build": "rimraf dist && graphql prepare && tsc",
     "start": "node dist"
   },
   "devDependencies": {
     "@types/node": "^9.3.0",
+    "dotenv": "^4.0.0",
     "nodemon": "^1.14.11",
+    "now": "^9.2.7",
+    "npm-run-all": "^4.1.2",
+    "ts-node": "^4.1.0",
     "typescript": "^2.6.2"
   },
   "dependencies": {
@@ -21,5 +28,8 @@
     "faker": "^4.1.0",
     "graphql-yoga": "^1.2.0",
     "jsonwebtoken": "^8.1.0"
+  },
+  "now": {
+    "alias": "fakerql"
   }
 }
