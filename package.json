@@ -2,12 +2,16 @@
   "private": true,
   "version": "0.0.1",
   "license": "MIT",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "build": "rm -rf dist && tsc -d",
+    "prepare": "npm run build",
+    "start": "node dist"
   },
   "devDependencies": {
-    "nodemon": "^1.14.11"
+    "@types/node": "^9.3.0",
+    "nodemon": "^1.14.11",
+    "typescript": "^2.6.2"
   },
   "dependencies": {
     "apollo-errors": "^1.5.1",

@@ -13,7 +13,7 @@ const { generateAuthToken } = require('./utils');
 
 const DEFAULT_COUNT = 25;
 
-module.exports = {
+export default {
   Query: {
     allUsers(parent, { count = DEFAULT_COUNT }, { faker }) {
       return new Array(count).fill(0).map(_ => ({
