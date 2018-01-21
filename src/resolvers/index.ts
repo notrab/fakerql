@@ -124,7 +124,7 @@ export default {
       const { faker } = ctx;
 
       return {
-        id,
+        id: userId,
         firstName: firstName === undefined ? faker.name.firstName() : firstName,
         lastName: lastName === undefined ? faker.name.lastName() : lastName,
         email: email === undefined ? faker.internet.email() : email,
