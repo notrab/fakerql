@@ -8,6 +8,24 @@ You can head over to [GraphiQL](https://fakerql.com) to send some example querie
 
 ## Queries
 
+#### Get authorised user
+
+You can request the logged in user provided you pass a valid `Authorization` header with a signed `JWT`. This can be done using the `register`/`login` mutations.
+
+```graphql
+# me
+
+{
+  me {
+    id
+    firstName
+    lastName
+    email
+    avatar
+  }
+}
+```
+
 #### Get a list of users
 
 You can request a list of users. `count` is optional and defaults to 25.
