@@ -14,23 +14,23 @@
     "now-start": "node dist"
   },
   "devDependencies": {
-    "@types/cuid": "^1.3.0",
-    "@types/node": "^9.3.0",
-    "dotenv": "^4.0.0",
-    "nodemon": "^1.14.11",
-    "now": "^9.2.7",
-    "npm-run-all": "^4.1.2",
-    "ts-node": "^4.1.0",
-    "typescript": "^2.6.2"
+    "@types/cuid": "1.3.0",
+    "@types/node": "9.3.0",
+    "dotenv": "4.0.0",
+    "nodemon": "1.14.11",
+    "now": "9.2.7",
+    "npm-run-all": "4.1.2",
+    "ts-node": "4.1.0",
+    "typescript": "2.6.2"
   },
   "dependencies": {
-    "apollo-errors": "^1.5.1",
-    "compression": "^1.7.1",
-    "express-jwt": "^5.3.0",
-    "faker": "^4.1.0",
-    "graphql-yoga": "^1.2.0",
-    "jsonwebtoken": "^8.1.0",
-    "scuid": "^1.0.2"
+    "apollo-errors": "1.5.1",
+    "compression": "1.7.1",
+    "express-jwt": "5.3.0",
+    "faker": "4.1.0",
+    "graphql-yoga": "1.2.0",
+    "jsonwebtoken": "8.1.0",
+    "scuid": "1.0.2"
   },
   "now": {
     "alias": "fakerql.com"
