@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "apollo-errors": "1.9.0",
-    "compression": "1.7.1",
+    "compression": "1.7.3",
     "express-jwt": "5.3.0",
     "faker": "4.1.0",
     "graphql-yoga": "1.2.0",
