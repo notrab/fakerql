@@ -30,7 +30,7 @@
     "faker": "4.1.0",
     "graphql-yoga": "1.16.7",
     "jsonwebtoken": "8.3.0",
-    "scuid": "1.0.2"
+    "scuid": "1.1.0"
   },
   "now": {
     "alias": "fakerql.com"
