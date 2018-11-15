@@ -63,9 +63,9 @@
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.3.0.tgz#3a129cda7c4e5df2409702626892cb4b96546dd5"
 
-"@types/node@9.6.38":
-  version "9.6.38"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.38.tgz#01fb3f7ee5da861fa7dd4c518f1fa7b01ba39b7f"
+"@types/node@9.6.39":
+  version "9.6.39"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.39.tgz#111cb4f5591cb6945aad34733b4e40bfd59b58fc"
 
 "@types/serve-static@*":
   version "1.13.1"
