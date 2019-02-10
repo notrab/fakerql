@@ -5,6 +5,7 @@ import * as faker from 'faker/locale/en';
 import * as compression from 'compression';
 
 import resolvers from './resolvers';
+import defaultPlaygroundQuery from './initQuery'
 
 const { JWT_SECRET } = process.env;
 
@@ -36,7 +37,8 @@ const options = {
   formatError,
   endpoint: '/graphql',
   subscriptions: '/subscriptions',
-  playground: '/'
+  playground: '/',
+  defaultPlaygroundQuery
 };
 
 server.start(options, ({ port }) =>

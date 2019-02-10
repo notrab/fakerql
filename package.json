@@ -8,8 +8,7 @@
     "dev": "npm-run-all --parallel start playground",
     "start": "nodemon -e ts,graphql -x ts-node -r dotenv/config src",
     "playground": "graphql playground",
-    "deploy":
-      "now --public --dotenv .env.production && now alias && now rm --yes --safe fakerql.com",
+    "deploy": "now --public --dotenv .env.production && now alias && now rm --yes --safe fakerql.com",
     "build": "rimraf dist && tsc",
     "now-start": "node dist"
   },
@@ -28,12 +27,9 @@
     "compression": "1.7.3",
     "express-jwt": "5.3.1",
     "faker": "4.1.0",
-    "graphql-yoga": "1.17.0",
+    "graphql-yoga": "1.17.4",
     "jsonwebtoken": "8.4.0",
     "scuid": "1.1.0"
-  },
-  "now": {
-    "alias": "fakerql.com"
   },
   "prettier": {
     "semi": false,
